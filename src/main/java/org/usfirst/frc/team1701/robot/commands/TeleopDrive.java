@@ -49,7 +49,6 @@ public class TeleopDrive extends Command {
 		Robot.driveTrain.preparePIDForTeleop();
 	}
 	protected void execute() {
-		Robot.lights.getTargetingLED().set(Relay.Value.kOn);
 		SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrain.getLeftDistance());
 		SmartDashboard.putNumber("Right Encoder Reading: ", Robot.driveTrain.getRightDistance());
 		SmartDashboard.putNumber("Navx Reading: ", RobotMap.navx.getYaw());

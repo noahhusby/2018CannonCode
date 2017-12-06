@@ -46,8 +46,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem implements PIDOutput {
 	private final SpeedController left_1 = RobotMap.driveTrainLeft_1;
 	private final SpeedController left_2 = RobotMap.driveTrainLeft_2;
+	private final SpeedController left_3 = RobotMap.driveTrainLeft_3;
+	private final SpeedController left_4 = RobotMap.driveTrainLeft_4;
 	private final SpeedController right_1 = RobotMap.driveTrainRight_1;
 	private final SpeedController right_2 = RobotMap.driveTrainRight_2;
+	private final SpeedController right_3 = RobotMap.driveTrainRight_3;
+	private final SpeedController right_4 = RobotMap.driveTrainRight_4;
 	private boolean reversed = true;
 	private final double DIST_ADJUST_CONST = 1052.6;
 	private boolean precise = false;
@@ -136,10 +140,14 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	public void leftDriveControl(double inputSpeed) {
 		left_1.set(inputSpeed);
 		left_2.set(inputSpeed);
+		left_3.set(inputSpeed);
+		left_4.set(inputSpeed);
 	}
 	public void rightDriveControl(double inputSpeed) {
 		right_1.set(inputSpeed);
 		right_2.set(inputSpeed);
+		right_3.set(inputSpeed);
+		right_4.set(inputSpeed);
 	}
 	public void teleopControl(double forwardsBackwardsAxis, double turningAxis) {
 		if (reversed) {

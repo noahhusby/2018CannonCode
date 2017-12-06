@@ -35,15 +35,9 @@
  */
 package org.usfirst.frc.team1701.robot;
 import org.usfirst.frc.team1701.robot.commands.AutonomousCommand;
-import org.usfirst.frc.team1701.robot.subsystems.Climber;
 import org.usfirst.frc.team1701.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team1701.robot.subsystems.GearArm;
-import org.usfirst.frc.team1701.robot.subsystems.Intake;
-import org.usfirst.frc.team1701.robot.subsystems.Lights;
-import org.usfirst.frc.team1701.robot.subsystems.ShooterSystem;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -60,11 +54,8 @@ public class Robot extends IterativeRobot {
     // Initialize our various subsystems.
     public static OI oi;
     public static DriveTrain driveTrain;
-    public static ShooterSystem shooterSystem;
-    public static Intake intake;
-    public static GearArm gearArm;
-    public static Lights lights;
-    public static Climber climber;
+
+
     // Load a NetworkTable. This will eventually be replaced by ZeroMQ.
     private NetworkTable cameraTable;
     /**
@@ -75,11 +66,6 @@ public class Robot extends IterativeRobot {
         setupNetworkTable(); // ZeroMQ me up, Scotty!
         // Initialize our subsystems.
         driveTrain = new DriveTrain();
-        shooterSystem = new ShooterSystem();
-        intake = new Intake();
-        gearArm = new GearArm();
-        lights = new Lights();
-        climber = new Climber();
         oi = new OI(); // If you move this... you're gonna have a bad time
         autonomousCommand = new AutonomousCommand();
         try {

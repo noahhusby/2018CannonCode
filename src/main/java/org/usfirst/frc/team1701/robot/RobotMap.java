@@ -58,8 +58,12 @@ public class RobotMap {
 
     public static SpeedController driveTrainLeft_1;
     public static SpeedController driveTrainLeft_2;
+    public static SpeedController driveTrainLeft_3;
+    public static SpeedController driveTrainLeft_4;
     public static SpeedController driveTrainRight_1;
     public static SpeedController driveTrainRight_2;
+    public static SpeedController driveTrainRight_3;
+    public static SpeedController driveTrainRight_4;
     public static SpeedController climberMotor1;
     public static SpeedController climberMotor2;
     public static SpeedController turretHeadRotate;
@@ -75,10 +79,18 @@ public class RobotMap {
         LiveWindow.addActuator("DriveTrain", "Left_1", (CANTalon) driveTrainLeft_1);
         driveTrainLeft_2 = new CANTalon(3);
         LiveWindow.addActuator("DriveTrain", "Left_2", (CANTalon) driveTrainLeft_2);
+        driveTrainLeft_3 = new CANTalon(4);
+        LiveWindow.addActuator("DriveTrain", "Left_3", (CANTalon) driveTrainLeft_3);
+        driveTrainLeft_4 = new CANTalon(5);
+        LiveWindow.addActuator("DriveTrain", "Left_4", (CANTalon) driveTrainLeft_4);
         driveTrainRight_1 = new CANTalon(12);
         LiveWindow.addActuator("DriveTrain", "Right_1", (CANTalon) driveTrainRight_1);
         driveTrainRight_2 = new CANTalon(13);
         LiveWindow.addActuator("DriveTrain", "Right_2", (CANTalon) driveTrainRight_2);
+        driveTrainRight_3 = new CANTalon(14);
+        LiveWindow.addActuator("DriveTrain", "Right_3", (CANTalon) driveTrainRight_3);
+        driveTrainRight_4 = new CANTalon(15);
+        LiveWindow.addActuator("DriveTrain", "Right4", (CANTalon) driveTrainRight_4);
         driveTrainRM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainRight_1, driveTrainRight_2);
         driveTrainRM.setSafetyEnabled(false);
         driveTrainRM.setExpiration(0.1);

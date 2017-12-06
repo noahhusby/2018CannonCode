@@ -64,7 +64,6 @@ public class AutonomousCommand extends Command {
         Robot.driveTrain.setActualDriveSpeed(0.0);
     }
     protected void execute() {
-        Robot.lights.getTargetingLED().set(Relay.Value.kOn);
         SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrain.getLeftDistance());
         if (Robot.driveTrain.getLeftDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE || Robot.driveTrain.getRightDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE) {
             Robot.driveTrain.teleopControl(AUTO_DRIVE_SPEED, 0);
