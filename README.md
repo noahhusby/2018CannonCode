@@ -1,8 +1,5 @@
-# Robocubs' 2017 Robot Code
-Welcome! This is our 2017 robot code for FIRST Steamworks.
-
-### Gradle
-We have switched over to Gradle (Pete, if you see this and don't like it, all the code before Gradle is in the branch named `gradle`.) None of the code has been changed in the time since Michigan 2017 State Championships.
+# Robocubs' 2018 Robot Code
+Welcome! This is our 2018 robot code for U of D's Tee Shirt Cannon.
 
 #### IntelliJ IDEA and Eclipse
 If you need to use Eclipse or IntelliJ IDEA, follow the steps below.
