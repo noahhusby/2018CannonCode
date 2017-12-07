@@ -36,16 +36,9 @@
 package org.usfirst.frc.team1701.robot;
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.DigitalOutput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -55,7 +48,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class RobotMap {
     // Create all of our initial variables. To be populated.
-
     public static SpeedController driveTrainLeft_1;
     public static SpeedController driveTrainLeft_2;
     public static SpeedController driveTrainLeft_3;
@@ -64,12 +56,8 @@ public class RobotMap {
     public static SpeedController driveTrainRight_2;
     public static SpeedController driveTrainRight_3;
     public static SpeedController driveTrainRight_4;
-    public static SpeedController climberMotor1;
-    public static SpeedController climberMotor2;
-    public static SpeedController turretHeadRotate;
+    public static I2C arduinoCommunication;
     public static RobotDrive driveTrainRM;
-    public static SpeedController shoot1;
-    public static SpeedController hopperMotor;
     public static final int VERSAPULSES = 1024;
     public static AHRS navx;
     public static void init() {
@@ -100,13 +88,8 @@ public class RobotMap {
         driveTrainRM.setInvertedMotor(MotorType.kFrontLeft, true);
         driveTrainRM.setInvertedMotor(MotorType.kRearLeft, true);
         driveTrainRM.setMaxOutput(1.0);
-        shoot1 = new CANTalon(1);
-        climberMotor1 = new CANTalon(15);// top climber motor
-        ((CANTalon) climberMotor1).configEncoderCodesPerRev(VERSAPULSES);
-        climberMotor2 = new CANTalon(14); // bottom climber motor
-        turretHeadRotate = new CANTalon(11);
-        ((CANTalon) turretHeadRotate).configEncoderCodesPerRev(VERSAPULSES);
-        hopperMotor = new CANTalon(0);
+        arduinoCommunication = new I2C(I2C.Port.kOnboard, 168);
+
         // We initialize the NavX in the main file.
     }
 }
