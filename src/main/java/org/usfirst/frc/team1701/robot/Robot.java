@@ -44,6 +44,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.kauailabs.navx.frc.AHRS;
+import org.usfirst.frc.team1701.robot.subsystems.I2CBus;
+
 /**
  * The VM on the RoboRIO is automatically configured to run this class.
  * If you change the name of this class or the package, change it in Gradle
@@ -54,6 +56,7 @@ public class Robot extends IterativeRobot {
     // Initialize our various subsystems.
     public static OI oi;
     public static DriveTrain driveTrain;
+    public static I2CBus i2c;
 
 
     // Load a NetworkTable. This will eventually be replaced by ZeroMQ.

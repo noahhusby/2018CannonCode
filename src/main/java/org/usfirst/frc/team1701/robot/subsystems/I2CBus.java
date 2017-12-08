@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team1701.robot.RobotMap;
 import edu.wpi.first.wpilibj.I2C;
 
-public class IC2Bus extends Subsystem {
+public class I2CBus extends Subsystem {
 
     private final I2C i2cCommunication = RobotMap.arduinoCommunication;
 
@@ -12,7 +12,7 @@ public class IC2Bus extends Subsystem {
         return i2cCommunication;
     }
 
-    public void sendToArduino(int message)
+    public void communicate(int message)
     {
         /**
          * Arduino I2C address defined in RobotMap.
