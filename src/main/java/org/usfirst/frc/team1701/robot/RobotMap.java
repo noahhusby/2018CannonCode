@@ -47,7 +47,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * floating around.
  */
 public class RobotMap {
+
     // Create all of our initial variables. To be populated.
+    public static final int arduinoInterface = 0;
     public static SpeedController driveTrainLeft_1;
     public static SpeedController driveTrainLeft_2;
     public static SpeedController driveTrainLeft_3;
@@ -89,6 +91,8 @@ public class RobotMap {
         driveTrainRM.setInvertedMotor(MotorType.kRearLeft, true);
         driveTrainRM.setMaxOutput(1.0);
         arduinoCommunication = new I2C(I2C.Port.kOnboard, 168);
+
+
 
         // We initialize the NavX in the main file.
     }
