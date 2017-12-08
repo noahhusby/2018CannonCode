@@ -25,6 +25,9 @@ Once Gradle has downloaded itself, pulled in the project dependencies, and gener
 ### Organization
 The source root is the folder `src/main/java`. Within that, all the Java files are as-is from before the Gradle conversion.
 
+#### I2C Bus
+Communication within the program uses the codes found at `https://goo.gl/Pk1HKm`.
+
 ### Building with Gradle <small>A Quick Overview of Targets</small>
 Gradle has a few different targets that it uses.
 
