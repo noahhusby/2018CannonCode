@@ -39,7 +39,7 @@ import org.usfirst.frc.team1701.robot.Robot;
 public class Preciseify extends Command {
 	public Preciseify() {
 		requires(Robot.driveTrainRight);
-		requires(Robot.driveTrainLeft);
+
 	}
 	protected void initialize() {}
 	protected void execute() {

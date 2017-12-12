@@ -42,6 +42,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TeleopDrive extends Command {
 	public TeleopDrive() {
 		requires(Robot.driveTrainRight);
+		requires(Robot.driveTrainLeft);
 	}
 	protected void initialize() {
 		Robot.driveTrainLeft.resetLeftEncoder();

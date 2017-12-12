@@ -66,21 +66,21 @@ public class RobotMap {
     public static void init() {
         // Populate these values.
 
-        driveTrainLeft_1 = new CANTalon(4);
+        driveTrainLeft_1 = new CANTalon(1);
         LiveWindow.addActuator("DriveTrain", "Left_1", (CANTalon) driveTrainLeft_1);
-        driveTrainLeft_2 = new CANTalon(5);
+        driveTrainLeft_2 = new CANTalon(2);
         LiveWindow.addActuator("DriveTrain", "Left_2", (CANTalon) driveTrainLeft_2);
-        driveTrainLeft_3 = new CANTalon(6);
+        driveTrainLeft_3 = new CANTalon(3);
         LiveWindow.addActuator("DriveTrain", "Left_3", (CANTalon) driveTrainLeft_3);
-        driveTrainLeft_4 = new CANTalon(7);
+        driveTrainLeft_4 = new CANTalon(4);
         LiveWindow.addActuator("DriveTrain", "Left_4", (CANTalon) driveTrainLeft_4);
-        driveTrainRight_1 = new CANTalon(10);
+        driveTrainRight_1 = new CANTalon(5);
         LiveWindow.addActuator("DriveTrain", "Right_1", (CANTalon) driveTrainRight_1);
-        driveTrainRight_2 = new CANTalon(12);
+        driveTrainRight_2 = new CANTalon(6);
         LiveWindow.addActuator("DriveTrain", "Right_2", (CANTalon) driveTrainRight_2);
-        driveTrainRight_3 = new CANTalon(8);
+        driveTrainRight_3 = new CANTalon(7);
         LiveWindow.addActuator("DriveTrain", "Right_3", (CANTalon) driveTrainRight_3);
-        driveTrainRight_4 = new CANTalon(14);
+        driveTrainRight_4 = new CANTalon(8);
         LiveWindow.addActuator("DriveTrain", "Right_4", (CANTalon) driveTrainRight_4);
         driveTrainRM = new RobotDrive(driveTrainRight_1, driveTrainRight_2, driveTrainRight_3, driveTrainRight_4); //Right Drive Train
         driveTrainRM.setSafetyEnabled(false);

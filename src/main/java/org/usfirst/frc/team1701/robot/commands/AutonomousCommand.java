@@ -59,7 +59,7 @@ public class AutonomousCommand extends Command {
 
     public AutonomousCommand() {
         requires(Robot.driveTrainRight); // Using requires, we depend on subsystem `driveTrain`.
-        requires(Robot.driveTrainLeft);
+
     }
     protected void initialize() {
         Robot.driveTrainRight.resetRightEncoder();

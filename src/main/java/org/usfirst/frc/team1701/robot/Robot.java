@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot {
         setupNetworkTable(); // ZeroMQ me up, Scotty!
         // Initialize our subsystems.
         driveTrainRight = new DriveTrain();
+        driveTrainLeft = new DriveTrainLeft();
 
 
 
