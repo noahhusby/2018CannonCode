@@ -44,10 +44,6 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem implements PIDOutput {
-	private final SpeedController left_1 = RobotMap.driveTrainLeft_1;
-	private final SpeedController left_2 = RobotMap.driveTrainLeft_2;
-	private final SpeedController left_3 = RobotMap.driveTrainLeft_3;
-	private final SpeedController left_4 = RobotMap.driveTrainLeft_4;
 	private final SpeedController right_1 = RobotMap.driveTrainRight_1;
 	private final SpeedController right_2 = RobotMap.driveTrainRight_2;
 	private final SpeedController right_3 = RobotMap.driveTrainRight_3;
@@ -95,12 +91,11 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	public void setPrecise(boolean precise) {
 		this.precise = precise;
 	}
-	private final CANTalon leftEncTalon = (CANTalon) left_2;
 	private final CANTalon rightEncTalon = (CANTalon) right_1;
 	private final double WHEEL_CIRCUMFERENCE = 3.9 * Math.PI;
 	private final int PULSES_PER_ROTATION = 1440;
 	public void setup() {
-		leftEncTalon.configEncoderCodesPerRev(PULSES_PER_ROTATION);
+
 		rightEncTalon.configEncoderCodesPerRev(PULSES_PER_ROTATION);
 	}
 	public void enablePID() {
@@ -108,15 +103,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	}
 	public void disablePID() {
 		pid.disable();
-	}
-	public int getLeftVelocity() {
-		return leftEncTalon.getEncVelocity();
-	}
-	public double getLeftDistance() {
-		return leftEncTalon.getEncPosition() * WHEEL_CIRCUMFERENCE / DIST_ADJUST_CONST;
-	}
-	public void resetLeftEncoder() {
-		leftEncTalon.setEncPosition(0);
 	}
 	public int getRightVelocity() {
 		return rightEncTalon.getEncVelocity();
@@ -137,12 +123,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	public void preparePIDForTeleop() {
 		return;
 	}
-	public void leftDriveControl(double inputSpeed) {
-		left_1.set(inputSpeed);
-		left_2.set(inputSpeed);
-		left_3.set(inputSpeed);
-		left_4.set(inputSpeed);
-	}
+
 	public void rightDriveControl(double inputSpeed) {
 		right_1.set(inputSpeed);
 		right_2.set(inputSpeed);

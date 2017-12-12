@@ -60,36 +60,47 @@ public class RobotMap {
     public static SpeedController driveTrainRight_4;
     public static I2C arduinoCommunication;
     public static RobotDrive driveTrainRM;
+    public static RobotDrive driveTrainLM;
     public static final int VERSAPULSES = 1024;
     public static AHRS navx;
     public static void init() {
         // Populate these values.
 
-        driveTrainLeft_1 = new CANTalon(2);
+        driveTrainLeft_1 = new CANTalon(4);
         LiveWindow.addActuator("DriveTrain", "Left_1", (CANTalon) driveTrainLeft_1);
-        driveTrainLeft_2 = new CANTalon(3);
+        driveTrainLeft_2 = new CANTalon(5);
         LiveWindow.addActuator("DriveTrain", "Left_2", (CANTalon) driveTrainLeft_2);
-        driveTrainLeft_3 = new CANTalon(4);
+        driveTrainLeft_3 = new CANTalon(6);
         LiveWindow.addActuator("DriveTrain", "Left_3", (CANTalon) driveTrainLeft_3);
-        driveTrainLeft_4 = new CANTalon(5);
+        driveTrainLeft_4 = new CANTalon(7);
         LiveWindow.addActuator("DriveTrain", "Left_4", (CANTalon) driveTrainLeft_4);
-        driveTrainRight_1 = new CANTalon(12);
+        driveTrainRight_1 = new CANTalon(10);
         LiveWindow.addActuator("DriveTrain", "Right_1", (CANTalon) driveTrainRight_1);
-        driveTrainRight_2 = new CANTalon(13);
+        driveTrainRight_2 = new CANTalon(12);
         LiveWindow.addActuator("DriveTrain", "Right_2", (CANTalon) driveTrainRight_2);
-        driveTrainRight_3 = new CANTalon(14);
+        driveTrainRight_3 = new CANTalon(8);
         LiveWindow.addActuator("DriveTrain", "Right_3", (CANTalon) driveTrainRight_3);
-        driveTrainRight_4 = new CANTalon(15);
-        LiveWindow.addActuator("DriveTrain", "Right4", (CANTalon) driveTrainRight_4);
-        driveTrainRM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainRight_1, driveTrainRight_2);
+        driveTrainRight_4 = new CANTalon(14);
+        LiveWindow.addActuator("DriveTrain", "Right_4", (CANTalon) driveTrainRight_4);
+        driveTrainRM = new RobotDrive(driveTrainRight_1, driveTrainRight_2, driveTrainRight_3, driveTrainRight_4); //Right Drive Train
         driveTrainRM.setSafetyEnabled(false);
         driveTrainRM.setExpiration(0.1);
         driveTrainRM.setSensitivity(0.5);
         driveTrainRM.setInvertedMotor(MotorType.kFrontRight, true);
         driveTrainRM.setInvertedMotor(MotorType.kRearRight, true);
-        driveTrainRM.setInvertedMotor(MotorType.kFrontLeft, true);
-        driveTrainRM.setInvertedMotor(MotorType.kRearLeft, true);
+        driveTrainRM.setInvertedMotor(MotorType.kFrontRight, true);
+        driveTrainRM.setInvertedMotor(MotorType.kRearRight, true);
         driveTrainRM.setMaxOutput(1.0);
+        driveTrainLM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainLeft_3, driveTrainLeft_4);
+        driveTrainLM.setSafetyEnabled(false);
+        driveTrainLM.setExpiration(0.1);
+        driveTrainLM.setSensitivity(0.5);
+        driveTrainLM.setInvertedMotor(MotorType.kFrontLeft, true);
+        driveTrainLM.setInvertedMotor(MotorType.kRearLeft, true);
+        driveTrainLM.setInvertedMotor(MotorType.kFrontLeft, true);
+        driveTrainLM.setInvertedMotor(MotorType.kRearLeft, true);
+        driveTrainLM.setMaxOutput(1.0);
+
         arduinoCommunication = new I2C(I2C.Port.kOnboard, 168);
 
 

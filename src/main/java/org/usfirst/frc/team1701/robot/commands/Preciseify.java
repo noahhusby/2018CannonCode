@@ -38,11 +38,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1701.robot.Robot;
 public class Preciseify extends Command {
 	public Preciseify() {
-		requires(Robot.driveTrain);
+		requires(Robot.driveTrainRight);
+		requires(Robot.driveTrainLeft);
 	}
 	protected void initialize() {}
 	protected void execute() {
-		Robot.driveTrain.setPrecise(true);
+		Robot.driveTrainRight.setPrecise(true);
+		Robot.driveTrainLeft.setPrecise(true);
 	}
 	protected boolean isFinished() {
 		return false;

@@ -41,21 +41,23 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TeleopDrive extends Command {
 	public TeleopDrive() {
-		requires(Robot.driveTrain);
+		requires(Robot.driveTrainRight);
 	}
 	protected void initialize() {
-		Robot.driveTrain.resetLeftEncoder();
-		Robot.driveTrain.resetRightEncoder();
-		Robot.driveTrain.preparePIDForTeleop();
+		Robot.driveTrainLeft.resetLeftEncoder();
+		Robot.driveTrainRight.resetRightEncoder();
+		Robot.driveTrainRight.preparePIDForTeleop();
+		Robot.driveTrainLeft.preparePIDForTeleop();
 	}
 	protected void execute() {
-		SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrain.getLeftDistance());
-		SmartDashboard.putNumber("Right Encoder Reading: ", Robot.driveTrain.getRightDistance());
+		SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrainLeft.getLeftDistance());
+		SmartDashboard.putNumber("Right Encoder Reading: ", Robot.driveTrainRight.getRightDistance());
 		SmartDashboard.putNumber("Navx Reading: ", RobotMap.navx.getYaw());
 		double deadConst = .10;
 		double fBInput = checkDeadZone(Robot.oi.drive_FB.getY(), deadConst);
 		double tInput = .75 * checkDeadZone(Robot.oi.drive_T.getX(), deadConst);
-		Robot.driveTrain.teleopControl(fBInput, tInput);
+		Robot.driveTrainLeft.teleopControl(fBInput, tInput);
+		Robot.driveTrainRight.teleopControl(fBInput, tInput);
 	}
 	protected boolean isFinished() {
 		return false;

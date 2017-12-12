@@ -40,6 +40,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable; // Eventually replaceable by ZeroMQ.
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team1701.robot.subsystems.DriveTrainLeft;
 /**
  * Autonomous driving command.
  */
@@ -55,18 +56,21 @@ public class AutonomousCommand extends Command {
     private NetworkTable visionTable;
     private boolean turnLeft = false;
     private int autonomousMode;
+
     public AutonomousCommand() {
-        requires(Robot.driveTrain); // Using requires, we depend on subsystem `driveTrain`.
+        requires(Robot.driveTrainRight); // Using requires, we depend on subsystem `driveTrain`.
+        requires(Robot.driveTrainLeft);
     }
     protected void initialize() {
-        Robot.driveTrain.resetLeftEncoder();
-        Robot.driveTrain.resetRightEncoder();
-        Robot.driveTrain.setActualDriveSpeed(0.0);
+        Robot.driveTrainRight.resetRightEncoder();
+        Robot.driveTrainRight.setActualDriveSpeed(0.0);
+        Robot.driveTrainLeft.resetLeftEncoder();
+        Robot.driveTrainLeft.setActualDriveSpeed(0.0);
     }
     protected void execute() {
-        SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrain.getLeftDistance());
-        if (Robot.driveTrain.getLeftDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE || Robot.driveTrain.getRightDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE) {
-            Robot.driveTrain.teleopControl(AUTO_DRIVE_SPEED, 0);
+        SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrainLeft.getLeftDistance());
+        if (Robot.driveTrainLeft.getLeftDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE || Robot.driveTrainRight.getRightDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE) {
+            Robot.driveTrainRight.teleopControl(AUTO_DRIVE_SPEED, 0);
             SmartDashboard.putNumber("Autoforward Speed: ", AUTO_DRIVE_SPEED);
         } else {
             RobotMap.driveTrainRM.arcadeDrive(0, 0);
@@ -77,8 +81,10 @@ public class AutonomousCommand extends Command {
     }
     protected void end() {
         RobotMap.driveTrainRM.arcadeDrive(0, 0);
+        RobotMap.driveTrainLM.arcadeDrive(0,0);
     }
     protected void interrupted() {
         RobotMap.driveTrainRM.arcadeDrive(0, 0);
+        RobotMap.driveTrainLM.arcadeDrive(0,0);
     }
 }

@@ -44,7 +44,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.kauailabs.navx.frc.AHRS;
+import org.usfirst.frc.team1701.robot.subsystems.DriveTrainLeft;
 import org.usfirst.frc.team1701.robot.subsystems.I2CBus;
+
 
 /**
  * The VM on the RoboRIO is automatically configured to run this class.
@@ -55,7 +57,8 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     // Initialize our various subsystems.
     public static OI oi;
-    public static DriveTrain driveTrain;
+    public static DriveTrain driveTrainRight;
+    public static DriveTrainLeft driveTrainLeft;
     public static I2CBus i2c;
 
 
@@ -68,7 +71,10 @@ public class Robot extends IterativeRobot {
         RobotMap.init(); // Initialize our RobotMap.
         setupNetworkTable(); // ZeroMQ me up, Scotty!
         // Initialize our subsystems.
-        driveTrain = new DriveTrain();
+        driveTrainRight = new DriveTrain();
+
+
+
         oi = new OI(); // If you move this... you're gonna have a bad time
         autonomousCommand = new AutonomousCommand();
         try {
@@ -85,7 +91,8 @@ public class Robot extends IterativeRobot {
             SmartDashboard.putBoolean("NavX Detected", false);
         }
         SmartDashboard.putNumber("Autonomous Mode: ", -1);
-        Robot.driveTrain.setupPID();
+        Robot.driveTrainRight.setupPID();
+        Robot.driveTrainLeft.setupPID();
     }
     public void setupNetworkTable() {
         try {

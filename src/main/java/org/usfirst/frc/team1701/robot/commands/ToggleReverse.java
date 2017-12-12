@@ -39,11 +39,13 @@ import org.usfirst.frc.team1701.robot.Robot;
 public class ToggleReverse extends Command {
 	private boolean isFinished = true;
 	public ToggleReverse() {
-		requires(Robot.driveTrain);
+		requires(Robot.driveTrainRight);
+		requires(Robot.driveTrainLeft);
 	}
 	protected void initialize() {}
 	protected void execute() {
-		Robot.driveTrain.toggleReversed();
+		Robot.driveTrainRight.toggleReversed();
+		Robot.driveTrainLeft.toggleReversed();
 		isFinished = true;
 	}
 	protected boolean isFinished() {

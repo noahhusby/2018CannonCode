@@ -46,6 +46,7 @@ public class OI {
     // Create our Joystick and Button controls.
     public JoystickButton gearMode;
     public JoystickButton preciseMode;
+    public JoystickButton turboMode;
     public Joystick drive_FB;
     public Joystick drive_T;
     public Joystick operation;
