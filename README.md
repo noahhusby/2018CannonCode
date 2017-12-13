@@ -1,5 +1,5 @@
-# Robocubs' 2018 Robot Code
-Welcome! This is our 2018 robot code for U of D's Tee Shirt Cannon.
+# Robocubs' 2018 T-Shirt Robot Code
+Welcome! This is our 2018 robot code for U of D's T-Shirt Cannon.
 
 #### IntelliJ IDEA and Eclipse
 If you need to use Eclipse or IntelliJ IDEA, follow the steps below.
