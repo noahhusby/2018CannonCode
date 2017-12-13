@@ -82,23 +82,15 @@ public class RobotMap {
         LiveWindow.addActuator("DriveTrain", "Right_3", (CANTalon) driveTrainRight_3);
         driveTrainRight_4 = new CANTalon(8);
         LiveWindow.addActuator("DriveTrain", "Right_4", (CANTalon) driveTrainRight_4);
-        driveTrainRM = new RobotDrive(driveTrainRight_1, driveTrainRight_2, driveTrainRight_3, driveTrainRight_4); //Right Drive Train
+        driveTrainRM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainRight_1, driveTrainRight_2); //Right Drive Train
         driveTrainRM.setSafetyEnabled(false);
         driveTrainRM.setExpiration(0.1);
         driveTrainRM.setSensitivity(0.5);
-        driveTrainRM.setInvertedMotor(MotorType.kFrontRight, true);
-        driveTrainRM.setInvertedMotor(MotorType.kRearRight, true);
-        driveTrainRM.setInvertedMotor(MotorType.kFrontRight, true);
-        driveTrainRM.setInvertedMotor(MotorType.kRearRight, true);
         driveTrainRM.setMaxOutput(1.0);
-        driveTrainLM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainLeft_3, driveTrainLeft_4);
+        driveTrainLM = new RobotDrive(driveTrainLeft_3, driveTrainLeft_4, driveTrainRight_3, driveTrainRight_4);
         driveTrainLM.setSafetyEnabled(false);
         driveTrainLM.setExpiration(0.1);
         driveTrainLM.setSensitivity(0.5);
-        driveTrainLM.setInvertedMotor(MotorType.kFrontLeft, true);
-        driveTrainLM.setInvertedMotor(MotorType.kRearLeft, true);
-        driveTrainLM.setInvertedMotor(MotorType.kFrontLeft, true);
-        driveTrainLM.setInvertedMotor(MotorType.kRearLeft, true);
         driveTrainLM.setMaxOutput(1.0);
 
         arduinoCommunication = new I2C(I2C.Port.kOnboard, 168);

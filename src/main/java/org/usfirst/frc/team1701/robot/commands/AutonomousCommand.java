@@ -59,7 +59,7 @@ public class AutonomousCommand extends Command {
 
     public AutonomousCommand() {
         requires(Robot.driveTrainRight); // Using requires, we depend on subsystem `driveTrain`.
-
+        requires(Robot.driveTrainLeft);
     }
     protected void initialize() {
         Robot.driveTrainRight.resetRightEncoder();
@@ -71,9 +71,11 @@ public class AutonomousCommand extends Command {
         SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrainLeft.getLeftDistance());
         if (Robot.driveTrainLeft.getLeftDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE || Robot.driveTrainRight.getRightDistance() > -1 * DRIVE_CORRECTION * DRIVE_FORWARD_DISTANCE) {
             Robot.driveTrainRight.teleopControl(AUTO_DRIVE_SPEED, 0);
+            Robot.driveTrainLeft.teleopControl(AUTO_DRIVE_SPEED, 0);
             SmartDashboard.putNumber("Autoforward Speed: ", AUTO_DRIVE_SPEED);
         } else {
             RobotMap.driveTrainRM.arcadeDrive(0, 0);
+            RobotMap.driveTrainLM.arcadeDrive(0,0);
         }
     }
     protected boolean isFinished() {

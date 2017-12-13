@@ -34,6 +34,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot;
+
+import org.usfirst.frc.team1701.robot.commands.CannonLaunch;
 import org.usfirst.frc.team1701.robot.commands.Preciseify;
 import org.usfirst.frc.team1701.robot.commands.ToggleReverse;
 import edu.wpi.first.wpilibj.Joystick;
@@ -47,18 +49,23 @@ public class OI {
     public JoystickButton gearMode;
     public JoystickButton preciseMode;
     public JoystickButton turboMode;
+    public JoystickButton launchCannon;
     public Joystick drive_FB;
     public Joystick drive_T;
     public Joystick operation;
     public OI() {
         // Populate the variables above.
-        operation = new Joystick(2);
-        drive_T = new Joystick(1);
-        drive_FB = new Joystick(0);
+        operation = new Joystick(1);
+        drive_T = new Joystick(0);
+        drive_FB = new Joystick(2);
         preciseMode = new JoystickButton(drive_FB, 1);
         preciseMode.whileHeld(new Preciseify());
         gearMode = new JoystickButton(drive_FB, 3);
         gearMode.whenPressed(new ToggleReverse());
+        launchCannon = new JoystickButton(operation, 4); //Change button number to match configuration
+        launchCannon.whenPressed(new CannonLaunch());
+
+
     }
     // Return drive_FB
     public Joystick getDrive_FB() {

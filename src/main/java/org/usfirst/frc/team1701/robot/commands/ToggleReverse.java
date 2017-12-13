@@ -40,6 +40,7 @@ public class ToggleReverse extends Command {
 	private boolean isFinished = true;
 	public ToggleReverse() {
 		requires(Robot.driveTrainRight);
+		requires(Robot.driveTrainLeft);
 
 	}
 	protected void initialize() {}

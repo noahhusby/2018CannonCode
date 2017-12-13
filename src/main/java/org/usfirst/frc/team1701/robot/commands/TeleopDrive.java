@@ -57,8 +57,8 @@ public class TeleopDrive extends Command {
 		double deadConst = .10;
 		double fBInput = checkDeadZone(Robot.oi.drive_FB.getY(), deadConst);
 		double tInput = .75 * checkDeadZone(Robot.oi.drive_T.getX(), deadConst);
-		Robot.driveTrainLeft.teleopControl(fBInput, tInput);
-		Robot.driveTrainRight.teleopControl(fBInput, tInput);
+		Robot.driveTrainLeft.teleopControl(tInput, fBInput);
+		Robot.driveTrainRight.teleopControl(tInput, fBInput);
 	}
 	protected boolean isFinished() {
 		return false;
