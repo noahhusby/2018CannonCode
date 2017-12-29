@@ -1,7 +1,7 @@
 /**
  * Robot.java
  *
- * Created by Noah Husby on 12/12/2017.
+ * Created by Noah Husby on 12/29/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -34,7 +34,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot;
-import org.usfirst.frc.team1701.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team1701.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -44,7 +43,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.kauailabs.navx.frc.AHRS;
-import org.usfirst.frc.team1701.robot.subsystems.DriveTrainLeft;
 import org.usfirst.frc.team1701.robot.subsystems.I2CBus;
 
 
@@ -57,8 +55,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     // Initialize our various subsystems.
     public static OI oi;
-    public static DriveTrain driveTrainRight;
-    public static DriveTrainLeft driveTrainLeft;
+    public static DriveTrain driveTrain;
     public static I2CBus i2c;
 
 
@@ -71,13 +68,12 @@ public class Robot extends IterativeRobot {
         RobotMap.init(); // Initialize our RobotMap.
         setupNetworkTable(); // ZeroMQ me up, Scotty!
         // Initialize our subsystems.
-        driveTrainRight = new DriveTrain();
-        driveTrainLeft = new DriveTrainLeft();
+        driveTrain = new DriveTrain();
 
 
 
         oi = new OI(); // If you move this... you're gonna have a bad time
-        autonomousCommand = new AutonomousCommand();
+
         try {
             System.out.println("Initializing NavX...");
             RobotMap.navx = new AHRS(SerialPort.Port.kUSB);
@@ -92,8 +88,7 @@ public class Robot extends IterativeRobot {
             SmartDashboard.putBoolean("NavX Detected", false);
         }
         SmartDashboard.putNumber("Autonomous Mode: ", -1);
-        Robot.driveTrainRight.setupPID();
-        Robot.driveTrainLeft.setupPID();
+        Robot.driveTrain.setupPID();
     }
     public void setupNetworkTable() {
         try {

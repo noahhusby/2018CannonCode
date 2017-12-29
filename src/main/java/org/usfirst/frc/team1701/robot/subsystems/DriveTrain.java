@@ -1,7 +1,7 @@
 /**
  * subsystems/DriveTrain.java
  *
- * Created by Noah Husby on 12/12/2017.
+ * Created by Noah Husby on 12/29/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -34,9 +34,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot.subsystems;
-import org.usfirst.frc.team1701.robot.Robot;
 import org.usfirst.frc.team1701.robot.RobotMap;
-import org.usfirst.frc.team1701.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team1701.robot.commands.TeleopDrive;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.PIDController;
@@ -44,10 +42,9 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem implements PIDOutput {
+	private final SpeedController left_2 = RobotMap.driveTrainLeft_2;
 	private final SpeedController right_1 = RobotMap.driveTrainRight_1;
-	private final SpeedController right_2 = RobotMap.driveTrainRight_2;
-	private final SpeedController right_3 = RobotMap.driveTrainRight_3;
-	private final SpeedController right_4 = RobotMap.driveTrainRight_4;
+
 	private boolean reversed = true;
 	private final double DIST_ADJUST_CONST = 1052.6;
 	private boolean precise = false;
@@ -58,18 +55,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	static final double kF = 0.00;
 	static final double kToleranceDegrees = 2.0;
 	private double rate;
-	private double startAngle;
-	private double actualDriveSpeed;
-	private final boolean STRAIGHTEN_WITH_PID = false;
-	public double getActualDriveSpeed() {
-		return actualDriveSpeed;
-	}
-	public void setActualDriveSpeed(double actualDriveSpeed) {
-		this.actualDriveSpeed = actualDriveSpeed;
-	}
-	public double getStartAngle() {
-		return startAngle;
-	}
 	public void setupPID() {
 		pid = new PIDController(kP, kI, kD, kF, RobotMap.navx, this);
 		pid.setInputRange(-180, 180);
@@ -78,34 +63,19 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		pid.setContinuous(true);
 		pid.enable();
 	}
-	public void setPIDtoAngle(double startAngle) {
-		this.startAngle = startAngle;
-		pid.setSetpoint(startAngle);
-	}
-	public boolean isPIDnull() {
-		return (pid == null);
-	}
-	public boolean isPrecise() {
-		return precise;
-	}
+
 	public void setPrecise(boolean precise) {
 		this.precise = precise;
 	}
+	private final CANTalon leftEncTalon = (CANTalon) left_2;
 	private final CANTalon rightEncTalon = (CANTalon) right_1;
 	private final double WHEEL_CIRCUMFERENCE = 3.9 * Math.PI;
-	private final int PULSES_PER_ROTATION = 1440;
-	public void setup() {
 
-		rightEncTalon.configEncoderCodesPerRev(PULSES_PER_ROTATION);
+	public double getLeftDistance() {
+		return leftEncTalon.getEncPosition() * WHEEL_CIRCUMFERENCE / DIST_ADJUST_CONST;
 	}
-	public void enablePID() {
-		pid.enable();
-	}
-	public void disablePID() {
-		pid.disable();
-	}
-	public int getRightVelocity() {
-		return rightEncTalon.getEncVelocity();
+	public void resetLeftEncoder() {
+		leftEncTalon.setEncPosition(0);
 	}
 	public double getRightDistance() {
 		return -rightEncTalon.getEncPosition() * WHEEL_CIRCUMFERENCE / DIST_ADJUST_CONST;
@@ -124,12 +94,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		return;
 	}
 
-	public void rightDriveControl(double inputSpeed) {
-		right_1.set(inputSpeed);
-		right_2.set(inputSpeed);
-		right_3.set(inputSpeed);
-		right_4.set(inputSpeed);
-	}
 	public void teleopControl(double forwardsBackwardsAxis, double turningAxis) {
 		if (reversed) {
 			forwardsBackwardsAxis *= -1;
@@ -144,12 +108,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	public void initDefaultCommand() {
 		setDefaultCommand(new TeleopDrive());
 	}
-	public void driveBackwardsPID() {
-		if (Math.abs(actualDriveSpeed) < Math.abs(AutonomousCommand.AUTO_DRIVE_SPEED)) {
-			actualDriveSpeed += .03;
-		}
-		RobotMap.driveTrainRM.arcadeDrive(actualDriveSpeed, rate);
-	}
+
+
 	@Override
 	public void pidWrite(double output) {
 		rate = output;

@@ -1,7 +1,7 @@
 /**
  * OI.java
  *
- * Created by Noah Husby on 12/12/2017.
+ * Created by Noah Husby on 12/29/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -58,11 +58,11 @@ public class OI {
         operation = new Joystick(1);
         drive_T = new Joystick(0);
         drive_FB = new Joystick(2);
-        preciseMode = new JoystickButton(drive_FB, 1);
+        preciseMode = new JoystickButton(drive_FB, 0);
         preciseMode.whileHeld(new Preciseify());
         gearMode = new JoystickButton(drive_FB, 3);
         gearMode.whenPressed(new ToggleReverse());
-        launchCannon = new JoystickButton(operation, 4); //Change button number to match configuration
+        launchCannon = new JoystickButton(operation, 10); //Change button number to match configuration
         launchCannon.whenPressed(new CannonLaunch());
 
 

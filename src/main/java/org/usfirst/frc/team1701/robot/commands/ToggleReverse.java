@@ -1,7 +1,7 @@
 /**
  * commands/ToggleReverse.java
  *
- * Created by Noah Husby on 12/12/2017.
+ * Created by Noah Husby on 12/29/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -39,14 +39,11 @@ import org.usfirst.frc.team1701.robot.Robot;
 public class ToggleReverse extends Command {
 	private boolean isFinished = true;
 	public ToggleReverse() {
-		requires(Robot.driveTrainRight);
-		requires(Robot.driveTrainLeft);
-
+		requires(Robot.driveTrain);
 	}
 	protected void initialize() {}
 	protected void execute() {
-		Robot.driveTrainRight.toggleReversed();
-		Robot.driveTrainLeft.toggleReversed();
+		Robot.driveTrain.toggleReversed();
 		isFinished = true;
 	}
 	protected boolean isFinished() {

@@ -1,7 +1,7 @@
 /**
  * commands/Preciseify.java
  *
- * Created by Noah Husby on 12/12/2017.
+ * Created by Noah Husby on 12/29/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -37,14 +37,13 @@ package org.usfirst.frc.team1701.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1701.robot.Robot;
 public class Preciseify extends Command {
+
 	public Preciseify() {
-		requires(Robot.driveTrainRight);
-		requires(Robot.driveTrainLeft);
+		requires(Robot.driveTrain);
 	}
 	protected void initialize() {}
 	protected void execute() {
-		Robot.driveTrainRight.setPrecise(true);
-		Robot.driveTrainLeft.setPrecise(true);
+		Robot.driveTrain.setPrecise(true);
 	}
 	protected boolean isFinished() {
 		return false;

@@ -1,7 +1,7 @@
 /**
  * commands/TeleopDrive.java
  *
- * Created by Noah Husby on 12/12/2017.
+ * Created by Noah Husby on 12/29/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -36,29 +36,25 @@
 package org.usfirst.frc.team1701.robot.commands;
 import org.usfirst.frc.team1701.robot.Robot;
 import org.usfirst.frc.team1701.robot.RobotMap;
-import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class TeleopDrive extends Command {
 	public TeleopDrive() {
-		requires(Robot.driveTrainRight);
-		requires(Robot.driveTrainLeft);
+		requires(Robot.driveTrain);
 	}
 	protected void initialize() {
-		Robot.driveTrainLeft.resetLeftEncoder();
-		Robot.driveTrainRight.resetRightEncoder();
-		Robot.driveTrainRight.preparePIDForTeleop();
-		Robot.driveTrainLeft.preparePIDForTeleop();
+		Robot.driveTrain.resetLeftEncoder();
+		Robot.driveTrain.resetRightEncoder();
+		Robot.driveTrain.preparePIDForTeleop();
 	}
 	protected void execute() {
-		SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrainLeft.getLeftDistance());
-		SmartDashboard.putNumber("Right Encoder Reading: ", Robot.driveTrainRight.getRightDistance());
+		SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrain.getLeftDistance());
+		SmartDashboard.putNumber("Right Encoder Reading: ", Robot.driveTrain.getRightDistance());
 		SmartDashboard.putNumber("Navx Reading: ", RobotMap.navx.getYaw());
 		double deadConst = .10;
 		double fBInput = checkDeadZone(Robot.oi.drive_FB.getY(), deadConst);
 		double tInput = .75 * checkDeadZone(Robot.oi.drive_T.getX(), deadConst);
-		Robot.driveTrainLeft.teleopControl(tInput, fBInput);
-		Robot.driveTrainRight.teleopControl(tInput, fBInput);
+		Robot.driveTrain.teleopControl(fBInput, tInput);
 	}
 	protected boolean isFinished() {
 		return false;
