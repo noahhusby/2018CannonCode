@@ -1,5 +1,5 @@
 /**
- * subsystems/Lights.java
+ * subsystems/Logs.java
  *
  * Created by Noah Husby on 12/30/2017.
  *
@@ -37,12 +37,15 @@ package org.usfirst.frc.team1701.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Lights extends Subsystem{
+public class Logs extends Subsystem {
 
+    public void confirmInputDevice()
+    {
+        System.out.println("Confirm I/O Order:\n0 - Operation\n1 - " +
+                "Thrust\n2 - Directional\n3 - Turret Pan\n4 - Turret Rotate");
+    }
 
-
-
-
+    @Override
     protected void initDefaultCommand() {
 
     }

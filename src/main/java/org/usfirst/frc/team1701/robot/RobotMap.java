@@ -1,7 +1,7 @@
 /**
  * RobotMap.java
  *
- * Created by Noah Husby on 12/29/2017.
+ * Created by Noah Husby on 12/30/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -37,7 +37,6 @@ package org.usfirst.frc.team1701.robot;
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /**
@@ -57,6 +56,11 @@ public class RobotMap {
     public static I2C arduinoCommunication;
     public static RobotDrive driveTrainRM;
     public static AHRS navx;
+    public static SpeedController turretRT;
+    public static RobotDrive turretRTDrive;
+    public static SpeedController turretPN;
+    public static RobotDrive turretPNDrive;
+
     public static void init() {
         // Populate these values.
 
@@ -64,16 +68,28 @@ public class RobotMap {
         LiveWindow.addActuator("DriveTrain", "Left_1", (CANTalon) driveTrainLeft_1);
         driveTrainLeft_2 = new CANTalon(2);
         LiveWindow.addActuator("DriveTrain", "Left_2", (CANTalon) driveTrainLeft_2);
-        driveTrainRight_1 = new CANTalon(3);
+        driveTrainRight_1 = new CANTalon(7);
         LiveWindow.addActuator("DriveTrain", "Right_1", (CANTalon) driveTrainRight_1);
-        driveTrainRight_2 = new CANTalon(4);
+        driveTrainRight_2 = new CANTalon(8);
         LiveWindow.addActuator("DriveTrain", "Right_2", (CANTalon) driveTrainRight_2);
-        driveTrainRM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainRight_1, driveTrainRight_2); //Right Drive Train
+        turretRT = new CANTalon(9);
+        LiveWindow.addActuator("Turret", "Turret_Rotate", (CANTalon) turretRT);
+        turretPN = new CANTalon(10); // TO BE CHANGED
+        LiveWindow.addActuator("Turret", "Turret_Pan", (CANTalon) turretPN);
+
+        driveTrainRM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainRight_1, driveTrainRight_2); //Master Drive Train
         driveTrainRM.setSafetyEnabled(false);
         driveTrainRM.setExpiration(0.1);
         driveTrainRM.setSensitivity(0.5);
         driveTrainRM.setMaxOutput(1.0);
-
+        driveTrainRM.setInvertedMotor(MotorType.kFrontRight, true);
+        driveTrainRM.setInvertedMotor(MotorType.kRearRight, true);
+        turretRTDrive = new RobotDrive(turretRT, turretRT);
+        turretRTDrive.setSafetyEnabled(false);
+        turretRTDrive.setMaxOutput(1.0);
+        turretPNDrive = new RobotDrive(turretPN, turretPN);
+        turretPNDrive.setSafetyEnabled(false);
+        turretPNDrive.setMaxOutput(1.0);
 
         arduinoCommunication = new I2C(I2C.Port.kOnboard, arduinoInterface);
 

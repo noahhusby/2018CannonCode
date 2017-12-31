@@ -1,5 +1,5 @@
 /**
- * subsystems/Lights.java
+ * subsystems/Turret.java
  *
  * Created by Noah Husby on 12/30/2017.
  *
@@ -35,14 +35,28 @@
  */
 package org.usfirst.frc.team1701.robot.subsystems;
 
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team1701.robot.RobotMap;
 
-public class Lights extends Subsystem{
+public class Turret extends Subsystem {
 
+    private RobotDrive rotateDrive = RobotMap.turretRTDrive;
+    private RobotDrive panDrive = RobotMap.turretPNDrive;
 
+    public void rotateTelopDrive(double forwardsBackwardsAxis, double turningAxis)
+    {
 
+        rotateDrive.arcadeDrive(forwardsBackwardsAxis, turningAxis);
+    }
 
+    public void panTelopDrive(double forwardsBackwardsAxis, double turningAxis)
+    {
 
+        panDrive.arcadeDrive(forwardsBackwardsAxis, turningAxis);
+    }
+
+    @Override
     protected void initDefaultCommand() {
 
     }

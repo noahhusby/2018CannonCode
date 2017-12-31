@@ -1,7 +1,7 @@
 /**
  * OI.java
  *
- * Created by Noah Husby on 12/29/2017.
+ * Created by Noah Husby on 12/30/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -37,6 +37,7 @@ package org.usfirst.frc.team1701.robot;
 
 import org.usfirst.frc.team1701.robot.commands.CannonLaunch;
 import org.usfirst.frc.team1701.robot.commands.Preciseify;
+
 import org.usfirst.frc.team1701.robot.commands.ToggleReverse;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -48,22 +49,31 @@ public class OI {
     // Create our Joystick and Button controls.
     public JoystickButton gearMode;
     public JoystickButton preciseMode;
-    public JoystickButton turboMode;
     public JoystickButton launchCannon;
+
+
+
     public Joystick drive_FB;
     public Joystick drive_T;
     public Joystick operation;
+    public Joystick turret_PN;
+    public Joystick turret_R;
     public OI() {
         // Populate the variables above.
-        operation = new Joystick(1);
+        operation = new Joystick(1); // Operation I/O controller to be removed, going to use turret_R as input (New controller not built yet)
         drive_T = new Joystick(0);
         drive_FB = new Joystick(2);
-        preciseMode = new JoystickButton(drive_FB, 0);
+        turret_R = new Joystick(3);
+        //turret_PN = new Joystick(4);
+        preciseMode = new JoystickButton(drive_FB, 1);
         preciseMode.whileHeld(new Preciseify());
         gearMode = new JoystickButton(drive_FB, 3);
         gearMode.whenPressed(new ToggleReverse());
         launchCannon = new JoystickButton(operation, 10); //Change button number to match configuration
         launchCannon.whenPressed(new CannonLaunch());
+
+
+
 
 
     }
@@ -78,5 +88,15 @@ public class OI {
     // Return operation
     public Joystick getOperation() {
         return operation;
+    }
+    // Return turret_PN
+    public Joystick getTurret_PN() {
+        return turret_PN;
+
+    }
+    // Return turret_R
+    public Joystick getTurret_R() {
+        return turret_R;
+
     }
 }

@@ -1,7 +1,7 @@
 /**
  * Robot.java
  *
- * Created by Noah Husby on 12/29/2017.
+ * Created by Noah Husby on 12/30/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -34,6 +34,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot;
+
 import org.usfirst.frc.team1701.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -44,6 +45,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.kauailabs.navx.frc.AHRS;
 import org.usfirst.frc.team1701.robot.subsystems.I2CBus;
+import org.usfirst.frc.team1701.robot.subsystems.Turret;
 
 
 /**
@@ -56,7 +58,9 @@ public class Robot extends IterativeRobot {
     // Initialize our various subsystems.
     public static OI oi;
     public static DriveTrain driveTrain;
+    public static Turret turret;
     public static I2CBus i2c;
+
 
 
     // Load a NetworkTable. This will eventually be replaced by ZeroMQ.
@@ -88,7 +92,9 @@ public class Robot extends IterativeRobot {
             SmartDashboard.putBoolean("NavX Detected", false);
         }
         SmartDashboard.putNumber("Autonomous Mode: ", -1);
+
         Robot.driveTrain.setupPID();
+
     }
     public void setupNetworkTable() {
         try {
@@ -124,7 +130,9 @@ public class Robot extends IterativeRobot {
         }
     }
     public void teleopPeriodic() {
+
         Scheduler.getInstance().run();
+
     }
     /**
      * This function is called periodically during test mode.

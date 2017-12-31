@@ -1,7 +1,7 @@
 /**
  * subsystems/I2CBus.java
  *
- * Created by Noah Husby on 12/29/2017.
+ * Created by Noah Husby on 12/30/2017.
  *
  * Copyright (c) 2017 Team 1701 (Robocubs)
  * All rights reserved.
@@ -44,8 +44,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class I2CBus extends Subsystem {
-
-
 
     private final I2C i2cCommunication = RobotMap.arduinoCommunication;
 
