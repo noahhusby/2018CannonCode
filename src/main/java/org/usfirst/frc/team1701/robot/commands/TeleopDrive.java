@@ -60,11 +60,11 @@ public class TeleopDrive extends Command {
 		double fBInput = checkDeadZone(oi.drive_FB.getY(), deadConst);
 		double tInput = .75 * checkDeadZone(oi.drive_T.getX(), deadConst);
 		double rtInput = .75 * checkDeadZone(oi.turret_R.getX(), deadConst);
-		double pInput = .75 * checkDeadZone(oi.turret_PN.getX(), deadConst);
+		// double pInput = .75 * checkDeadZone(oi.turret_PN.getX(), deadConst);
 
 		Robot.driveTrain.teleopControl(tInput, fBInput);
 		Robot.turret.rotateTelopDrive(rtInput, 0);
-		Robot.turret.panTelopDrive(pInput,0);
+
 
 	}
 	protected boolean isFinished() {

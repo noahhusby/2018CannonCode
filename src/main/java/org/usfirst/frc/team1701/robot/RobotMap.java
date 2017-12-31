@@ -74,8 +74,8 @@ public class RobotMap {
         LiveWindow.addActuator("DriveTrain", "Right_2", (CANTalon) driveTrainRight_2);
         turretRT = new CANTalon(9);
         LiveWindow.addActuator("Turret", "Turret_Rotate", (CANTalon) turretRT);
-        turretPN = new CANTalon(10); // TO BE CHANGED
-        LiveWindow.addActuator("Turret", "Turret_Pan", (CANTalon) turretPN);
+       // turretPN = new CANTalon(10); // TO BE CHANGED
+       // LiveWindow.addActuator("Turret", "Turret_Pan", (CANTalon) turretPN);
 
         driveTrainRM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainRight_1, driveTrainRight_2); //Master Drive Train
         driveTrainRM.setSafetyEnabled(false);
@@ -87,9 +87,9 @@ public class RobotMap {
         turretRTDrive = new RobotDrive(turretRT, turretRT);
         turretRTDrive.setSafetyEnabled(false);
         turretRTDrive.setMaxOutput(1.0);
-        turretPNDrive = new RobotDrive(turretPN, turretPN);
-        turretPNDrive.setSafetyEnabled(false);
-        turretPNDrive.setMaxOutput(1.0);
+       // turretPNDrive = new RobotDrive(turretPN, turretPN);
+       // turretPNDrive.setSafetyEnabled(false);
+       // turretPNDrive.setMaxOutput(1.0);
 
         arduinoCommunication = new I2C(I2C.Port.kOnboard, arduinoInterface);
 
