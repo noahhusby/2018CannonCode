@@ -53,7 +53,7 @@ public class RobotMap {
     public static SpeedController driveTrainLeft_2;
     public static SpeedController driveTrainRight_1;
     public static SpeedController driveTrainRight_2;
-    public static I2C arduinoCommunication;
+    public static I2C Wire;
     public static RobotDrive driveTrainRM;
     public static AHRS navx;
     public static SpeedController turretRT;
@@ -68,11 +68,11 @@ public class RobotMap {
         LiveWindow.addActuator("DriveTrain", "Left_1", (CANTalon) driveTrainLeft_1);
         driveTrainLeft_2 = new CANTalon(2);
         LiveWindow.addActuator("DriveTrain", "Left_2", (CANTalon) driveTrainLeft_2);
-        driveTrainRight_1 = new CANTalon(7);
+        driveTrainRight_1 = new CANTalon(3);
         LiveWindow.addActuator("DriveTrain", "Right_1", (CANTalon) driveTrainRight_1);
-        driveTrainRight_2 = new CANTalon(8);
+        driveTrainRight_2 = new CANTalon(4);
         LiveWindow.addActuator("DriveTrain", "Right_2", (CANTalon) driveTrainRight_2);
-        turretRT = new CANTalon(9);
+        turretRT = new CANTalon(5);
         LiveWindow.addActuator("Turret", "Turret_Rotate", (CANTalon) turretRT);
        // turretPN = new CANTalon(10); // TO BE CHANGED
        // LiveWindow.addActuator("Turret", "Turret_Pan", (CANTalon) turretPN);
@@ -91,7 +91,9 @@ public class RobotMap {
        // turretPNDrive.setSafetyEnabled(false);
        // turretPNDrive.setMaxOutput(1.0);
 
-        arduinoCommunication = new I2C(I2C.Port.kOnboard, arduinoInterface);
+        //Communication between arduino and RoboRIO
+        Wire = new I2C(I2C.Port.kOnboard, 4);
+
 
 
 

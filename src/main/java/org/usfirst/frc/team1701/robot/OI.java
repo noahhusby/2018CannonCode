@@ -35,7 +35,7 @@
  */
 package org.usfirst.frc.team1701.robot;
 
-import org.usfirst.frc.team1701.robot.commands.CannonLaunch;
+
 import org.usfirst.frc.team1701.robot.commands.Preciseify;
 
 import org.usfirst.frc.team1701.robot.commands.ToggleReverse;
@@ -50,8 +50,12 @@ public class OI {
     public JoystickButton gearMode;
     public JoystickButton preciseMode;
     public JoystickButton launchCannon;
-
-
+    public JoystickButton cannon1;
+    public JoystickButton cannon2;
+    public JoystickButton cannon3;
+    public JoystickButton cannon4;
+    public JoystickButton cannon5;
+    public JoystickButton cannon6;
 
     public Joystick drive_FB;
     public Joystick drive_T;
@@ -69,8 +73,16 @@ public class OI {
         preciseMode.whileHeld(new Preciseify());
         gearMode = new JoystickButton(drive_FB, 3);
         gearMode.whenPressed(new ToggleReverse());
-        launchCannon = new JoystickButton(operation, 10); //Change button number to match configuration
-        launchCannon.whenPressed(new CannonLaunch());
+
+        cannon1 = new JoystickButton(operation, 1);
+
+        cannon2 = new JoystickButton(operation, 2);
+        cannon3 = new JoystickButton(operation, 3);
+        cannon4 = new JoystickButton(operation, 4);
+        cannon5 = new JoystickButton(operation, 6);
+        cannon6 = new JoystickButton(operation, 7);
+        launchCannon = new JoystickButton(operation, 10);
+
 
 
 

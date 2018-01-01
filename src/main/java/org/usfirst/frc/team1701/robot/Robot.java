@@ -44,7 +44,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.kauailabs.navx.frc.AHRS;
-import org.usfirst.frc.team1701.robot.subsystems.I2CBus;
+import org.usfirst.frc.team1701.robot.subsystems.I2C;
 import org.usfirst.frc.team1701.robot.subsystems.Turret;
 
 
@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static DriveTrain driveTrain;
     public static Turret turret;
-    public static I2CBus i2c;
+    public static I2C i2c;
 
 
 

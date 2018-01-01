@@ -63,7 +63,7 @@ public class TeleopDrive extends Command {
 		// double pInput = .75 * checkDeadZone(oi.turret_PN.getX(), deadConst);
 
 		Robot.driveTrain.teleopControl(tInput, fBInput);
-		Robot.turret.rotateTelopDrive(rtInput, 0);
+		RobotMap.turretRTDrive.arcadeDrive(rtInput,0 );
 
 
 	}
