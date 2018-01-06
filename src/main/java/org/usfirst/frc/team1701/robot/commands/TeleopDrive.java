@@ -34,6 +34,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot.commands;
+import edu.wpi.first.wpilibj.GenericHID;
 import org.usfirst.frc.team1701.robot.Robot;
 import org.usfirst.frc.team1701.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
@@ -48,22 +49,19 @@ public class TeleopDrive extends Command {
 
 	}
 	protected void initialize() {
-		Robot.driveTrain.resetLeftEncoder();
-		Robot.driveTrain.resetRightEncoder();
 		Robot.driveTrain.preparePIDForTeleop();
 	}
 	protected void execute() {
-		SmartDashboard.putNumber("Left Encoder Reading: ", Robot.driveTrain.getLeftDistance());
-		SmartDashboard.putNumber("Right Encoder Reading: ", Robot.driveTrain.getRightDistance());
-		SmartDashboard.putNumber("Navx Reading: ", RobotMap.navx.getYaw());
+
 		double deadConst = .10;
 		double fBInput = checkDeadZone(oi.drive_FB.getY(), deadConst);
 		double tInput = .75 * checkDeadZone(oi.drive_T.getX(), deadConst);
 		double rtInput = .75 * checkDeadZone(oi.turret_R.getX(), deadConst);
-		// double pInput = .75 * checkDeadZone(oi.turret_PN.getX(), deadConst);
+		double pInput = .75 * checkDeadZone(oi.turret_PN.getX(), deadConst);
 
 		Robot.driveTrain.teleopControl(tInput, fBInput);
 		RobotMap.turretRTDrive.arcadeDrive(rtInput,0 );
+		RobotMap.turretPNDrive.arcadeDrive(pInput,0);
 
 
 	}

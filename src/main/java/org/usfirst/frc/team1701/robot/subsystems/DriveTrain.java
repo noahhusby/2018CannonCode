@@ -34,16 +34,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot.subsystems;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team1701.robot.RobotMap;
 import org.usfirst.frc.team1701.robot.commands.TeleopDrive;
-import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveTrain extends Subsystem implements PIDOutput {
-	private final SpeedController left_2 = RobotMap.driveTrainLeft_2;
-	private final SpeedController right_1 = RobotMap.driveTrainRight_1;
+
 
 	private boolean reversed = true;
 	private final double DIST_ADJUST_CONST = 1052.6;
@@ -67,22 +66,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	public void setPrecise(boolean precise) {
 		this.precise = precise;
 	}
-	private final CANTalon leftEncTalon = (CANTalon) left_2;
-	private final CANTalon rightEncTalon = (CANTalon) right_1;
-	private final double WHEEL_CIRCUMFERENCE = 3.9 * Math.PI;
 
-	public double getLeftDistance() {
-		return leftEncTalon.getEncPosition() * WHEEL_CIRCUMFERENCE / DIST_ADJUST_CONST;
-	}
-	public void resetLeftEncoder() {
-		leftEncTalon.setEncPosition(0);
-	}
-	public double getRightDistance() {
-		return -rightEncTalon.getEncPosition() * WHEEL_CIRCUMFERENCE / DIST_ADJUST_CONST;
-	}
-	public void resetRightEncoder() {
-		rightEncTalon.setEncPosition(0);
-	}
+
 	public void toggleReversed() {
 		if (reversed) {
 			reversed = false;

@@ -35,6 +35,7 @@
  */
 package org.usfirst.frc.team1701.robot;
 
+import org.usfirst.frc.team1701.robot.subsystems.Cannon;
 import org.usfirst.frc.team1701.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -44,8 +45,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.kauailabs.navx.frc.AHRS;
-import org.usfirst.frc.team1701.robot.subsystems.I2C;
-import org.usfirst.frc.team1701.robot.subsystems.Turret;
 
 
 /**
@@ -58,13 +57,12 @@ public class Robot extends IterativeRobot {
     // Initialize our various subsystems.
     public static OI oi;
     public static DriveTrain driveTrain;
-    public static Turret turret;
-    public static I2C i2c;
+    public static Cannon cannons;
+
 
 
 
     // Load a NetworkTable. This will eventually be replaced by ZeroMQ.
-    private NetworkTable cameraTable;
     /**
      * This function is run when the robot is first started up.
      */
@@ -97,11 +95,7 @@ public class Robot extends IterativeRobot {
 
     }
     public void setupNetworkTable() {
-        try {
-            cameraTable = NetworkTable.getTable("vision");
-        } catch(Exception e) {
-            System.out.println(e);
-        }
+
     }
     /**
      * These functions are called when the robot is disabled.
@@ -138,6 +132,5 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during test mode.
      */
     public void testPeriodic() {
-        LiveWindow.run();
     }
 }

@@ -2,14 +2,15 @@ package org.usfirst.frc.team1701.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team1701.robot.Robot;
+import org.usfirst.frc.team1701.robot.subsystems.Cannon;
 
 public class ShootCannon3 extends Command {
     public ShootCannon3() {
-        requires(Robot.i2c);
+
     }
     protected void initialize() {}
     protected void execute() {
-        Robot.i2c.writeToArduino("CN:3");
+        Cannon.cannon3.set(true);
     }
     protected boolean isFinished() {
         return true;

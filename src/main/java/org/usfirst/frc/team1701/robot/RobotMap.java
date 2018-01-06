@@ -34,11 +34,15 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot;
-import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -49,54 +53,52 @@ public class RobotMap {
 
     // Create all of our initial variables. To be populated.
     public static final int arduinoInterface = 0;
-    public static SpeedController driveTrainLeft_1;
-    public static SpeedController driveTrainLeft_2;
-    public static SpeedController driveTrainRight_1;
-    public static SpeedController driveTrainRight_2;
-    public static I2C Wire;
-    public static RobotDrive driveTrainRM;
+    public static WPI_TalonSRX driveTrainLeft_1;
+    public static WPI_TalonSRX driveTrainLeft_2;
+    public static WPI_TalonSRX driveTrainRight_1;
+    public static WPI_TalonSRX driveTrainRight_2;
+    public static WPI_TalonSRX turretPN;
+    public static WPI_TalonSRX turretRT;
     public static AHRS navx;
-    public static SpeedController turretRT;
-    public static RobotDrive turretRTDrive;
-    public static SpeedController turretPN;
-    public static RobotDrive turretPNDrive;
+    public static DifferentialDrive driveTrainRM;
+    public static DifferentialDrive turretRTDrive;
+    public static DifferentialDrive turretPNDrive;
+    public static SpeedControllerGroup driveTrainRMleft;
+    public static SpeedControllerGroup driveTrainRMright;
+    public static Solenoid cannon1;
+    public static Solenoid cannon2;
+    public static Solenoid cannon3;
+    public static Solenoid cannon4;
+    public static Solenoid cannon5;
+    public static Solenoid cannon6;
+
 
     public static void init() {
         // Populate these values.
 
-        driveTrainLeft_1 = new CANTalon(1);
-        LiveWindow.addActuator("DriveTrain", "Left_1", (CANTalon) driveTrainLeft_1);
-        driveTrainLeft_2 = new CANTalon(2);
-        LiveWindow.addActuator("DriveTrain", "Left_2", (CANTalon) driveTrainLeft_2);
-        driveTrainRight_1 = new CANTalon(3);
-        LiveWindow.addActuator("DriveTrain", "Right_1", (CANTalon) driveTrainRight_1);
-        driveTrainRight_2 = new CANTalon(4);
-        LiveWindow.addActuator("DriveTrain", "Right_2", (CANTalon) driveTrainRight_2);
-        turretRT = new CANTalon(5);
-        LiveWindow.addActuator("Turret", "Turret_Rotate", (CANTalon) turretRT);
-       // turretPN = new CANTalon(10); // TO BE CHANGED
-       // LiveWindow.addActuator("Turret", "Turret_Pan", (CANTalon) turretPN);
-
-        driveTrainRM = new RobotDrive(driveTrainLeft_1, driveTrainLeft_2, driveTrainRight_1, driveTrainRight_2); //Master Drive Train
-        driveTrainRM.setSafetyEnabled(false);
-        driveTrainRM.setExpiration(0.1);
-        driveTrainRM.setSensitivity(0.5);
-        driveTrainRM.setMaxOutput(1.0);
-        driveTrainRM.setInvertedMotor(MotorType.kFrontRight, true);
-        driveTrainRM.setInvertedMotor(MotorType.kRearRight, true);
-        turretRTDrive = new RobotDrive(turretRT, turretRT);
-        turretRTDrive.setSafetyEnabled(false);
-        turretRTDrive.setMaxOutput(1.0);
-       // turretPNDrive = new RobotDrive(turretPN, turretPN);
-       // turretPNDrive.setSafetyEnabled(false);
-       // turretPNDrive.setMaxOutput(1.0);
-
-        //Communication between arduino and RoboRIO
-        Wire = new I2C(I2C.Port.kOnboard, 4);
 
 
+        driveTrainLeft_1 = new WPI_TalonSRX(1);
+        driveTrainLeft_2 = new WPI_TalonSRX(2);
+        driveTrainRight_1 = new WPI_TalonSRX(3);
+        driveTrainRight_2 = new WPI_TalonSRX(4);
+        turretRT = new WPI_TalonSRX(5);
+        turretPN = new WPI_TalonSRX(6);
+        cannon1 = new Solenoid(0,2);
+        cannon2 = new Solenoid(0,3);
+        cannon3 = new Solenoid(0,4);
+        cannon4 = new Solenoid(0,5);
+        cannon5 = new Solenoid(0,6);
+        cannon6 = new Solenoid(0, 7);
 
+        driveTrainRMleft = new SpeedControllerGroup(driveTrainLeft_1,driveTrainLeft_2);
+        driveTrainRMright = new SpeedControllerGroup(driveTrainRight_1, driveTrainRight_2);
 
-        // We initialize the NavX in the main file.
+        driveTrainRM = new DifferentialDrive(driveTrainRMleft, driveTrainRMright); //Master Drive Train
+
+        turretRTDrive = new DifferentialDrive(turretRT, turretRT);
+
+        turretPNDrive = new DifferentialDrive(turretPN, turretPN);
+
     }
 }

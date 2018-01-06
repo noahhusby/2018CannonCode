@@ -50,4 +50,5 @@ public class Preciseify extends Command {
 	}
 	protected void end() {}
 	protected void interrupted() {}
+
 }

@@ -67,25 +67,34 @@ public class OI {
         drive_T = new Joystick(0);
         drive_FB = new Joystick(2);
         turret_R = new Joystick(3);
-        //turret_PN = new Joystick(4);
+        turret_PN = new Joystick(4);
         preciseMode = new JoystickButton(drive_FB, 1);
         preciseMode.whileHeld(new Preciseify());
         gearMode = new JoystickButton(drive_FB, 3);
         gearMode.whenPressed(new ToggleReverse());
         cannon1 = new JoystickButton(operation, 1);
         cannon1.whenPressed(new ShootCannon1());
+        cannon1.whenReleased(new StopCannon1());
         cannon2 = new JoystickButton(operation, 2);
         cannon2.whenPressed(new ShootCannon2());
+        cannon2.whenReleased(new StopCannon2());
         cannon3 = new JoystickButton(operation, 3);
         cannon3.whenPressed(new ShootCannon3());
+        cannon3.whenReleased(new StopCannon3());
         cannon4 = new JoystickButton(operation, 4);
         cannon4.whenPressed(new ShootCannon4());
+        cannon4.whenReleased(new StopCannon4());
         cannon5 = new JoystickButton(operation, 6);
         cannon5.whenPressed(new ShootCannon5());
+        cannon5.whenReleased(new StopCannon5());
         cannon6 = new JoystickButton(operation, 7);
         cannon6.whenPressed(new ShootCannon6());
+        cannon6.whenReleased(new StopCannon6());
         launchCannons = new JoystickButton(operation, 10);
-        launchCannons.whenPressed(new ShootCannons());
+
+
+
+
 
 
 

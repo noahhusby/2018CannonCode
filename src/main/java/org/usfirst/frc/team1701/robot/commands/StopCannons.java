@@ -1,16 +1,22 @@
 package org.usfirst.frc.team1701.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team1701.robot.Robot;
 import org.usfirst.frc.team1701.robot.subsystems.Cannon;
 
-public class ShootCannon5 extends Command {
-    public ShootCannon5() {
+public class StopCannons extends Command {
+    public StopCannons() {
 
     }
-    protected void initialize() {}
+    protected void initialize() {
+
+    }
     protected void execute() {
-        Cannon.cannon5.set(true);
+        Cannon.cannon1.set(false);
+        Cannon.cannon2.set(false);
+        Cannon.cannon3.set(false);
+        Cannon.cannon4.set(false);
+        Cannon.cannon5.set(false);
+        Cannon.cannon6.set(false);
     }
     protected boolean isFinished() {
         return true;
