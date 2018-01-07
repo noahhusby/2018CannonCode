@@ -1,9 +1,9 @@
 /**
  * Robot.java
  *
- * Created by Noah Husby on 12/30/2017.
+ * Created by Noah Husby on 1/7/2018.
  *
- * Copyright (c) 2017 Team 1701 (Robocubs)
+ * Copyright (c) 2018 Team 1701 (Robocubs)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,14 +38,8 @@ package org.usfirst.frc.team1701.robot;
 import org.usfirst.frc.team1701.robot.subsystems.Cannon;
 import org.usfirst.frc.team1701.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.kauailabs.navx.frc.AHRS;
-
 
 /**
  * The VM on the RoboRIO is automatically configured to run this class.
@@ -59,10 +53,6 @@ public class Robot extends IterativeRobot {
     public static DriveTrain driveTrain;
     public static Cannon cannons;
 
-
-
-
-    // Load a NetworkTable. This will eventually be replaced by ZeroMQ.
     /**
      * This function is run when the robot is first started up.
      */
@@ -72,27 +62,7 @@ public class Robot extends IterativeRobot {
         // Initialize our subsystems.
         driveTrain = new DriveTrain();
 
-
-
         oi = new OI(); // If you move this... you're gonna have a bad time
-
-        try {
-            System.out.println("Initializing NavX...");
-            RobotMap.navx = new AHRS(SerialPort.Port.kUSB);
-        } catch(Exception e) {
-            System.out.println(e);
-        }
-        if(RobotMap.navx != null) {
-            System.out.println("NavX running!");
-            SmartDashboard.putBoolean("NavX Detected", true);
-        } else {
-            System.out.println("NavX failed to initialize.");
-            SmartDashboard.putBoolean("NavX Detected", false);
-        }
-        SmartDashboard.putNumber("Autonomous Mode: ", -1);
-
-        Robot.driveTrain.setupPID();
-
     }
     public void setupNetworkTable() {
 

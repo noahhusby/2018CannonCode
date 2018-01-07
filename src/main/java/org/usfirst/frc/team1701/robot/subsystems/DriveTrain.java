@@ -1,9 +1,9 @@
 /**
  * subsystems/DriveTrain.java
  *
- * Created by Noah Husby on 12/30/2017.
+ * Created by Noah Husby on 1/7/2018.
  *
- * Copyright (c) 2017 Team 1701 (Robocubs)
+ * Copyright (c) 2018 Team 1701 (Robocubs)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,34 +34,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.usfirst.frc.team1701.robot.subsystems;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team1701.robot.RobotMap;
 import org.usfirst.frc.team1701.robot.commands.TeleopDrive;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
-public class DriveTrain extends Subsystem implements PIDOutput {
-
+public class DriveTrain extends Subsystem {
 
 	private boolean reversed = true;
-	private final double DIST_ADJUST_CONST = 1052.6;
 	private boolean precise = false;
-	private PIDController pid;
-	static final double kP = 0.03;
-	static final double kI = 0.00;
-	static final double kD = 0.00;
-	static final double kF = 0.00;
-	static final double kToleranceDegrees = 2.0;
-	private double rate;
-	public void setupPID() {
-		pid = new PIDController(kP, kI, kD, kF, RobotMap.navx, this);
-		pid.setInputRange(-180, 180);
-		pid.setOutputRange(-.5, .5);
-		pid.setAbsoluteTolerance(kToleranceDegrees);
-		pid.setContinuous(true);
-		pid.enable();
-	}
 
 	public void setPrecise(boolean precise) {
 		this.precise = precise;
@@ -74,9 +53,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		} else {
 			reversed = true;
 		}
-	}
-	public void preparePIDForTeleop() {
-		return;
 	}
 
 	public void teleopControl(double forwardsBackwardsAxis, double turningAxis) {
@@ -95,8 +71,4 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	}
 
 
-	@Override
-	public void pidWrite(double output) {
-		rate = output;
-	}
 }

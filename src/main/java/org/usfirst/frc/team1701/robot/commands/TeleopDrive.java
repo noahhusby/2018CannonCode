@@ -1,9 +1,9 @@
 /**
  * commands/TeleopDrive.java
  *
- * Created by Noah Husby on 12/30/2017.
+ * Created by Noah Husby on 1/7/2017.
  *
- * Copyright (c) 2017 Team 1701 (Robocubs)
+ * Copyright (c) 2018 Team 1701 (Robocubs)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@ public class TeleopDrive extends Command {
 
 	}
 	protected void initialize() {
-		Robot.driveTrain.preparePIDForTeleop();
+
 	}
 	protected void execute() {
 

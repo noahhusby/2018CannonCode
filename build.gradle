@@ -33,7 +33,6 @@ repositories {
 // and NavX.
 dependencies {
     compile wpilib()
-    compile navx()
     compile ctre()
 }
 

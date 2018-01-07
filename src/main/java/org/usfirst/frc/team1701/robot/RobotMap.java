@@ -1,9 +1,9 @@
 /**
  * RobotMap.java
  *
- * Created by Noah Husby on 12/30/2017.
+ * Created by Noah Husby on 1/7/2018.
  *
- * Copyright (c) 2017 Team 1701 (Robocubs)
+ * Copyright (c) 2018 Team 1701 (Robocubs)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,12 +35,9 @@
  */
 package org.usfirst.frc.team1701.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 
 
 /**
@@ -52,14 +49,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class RobotMap {
 
     // Create all of our initial variables. To be populated.
-    public static final int arduinoInterface = 0;
     public static WPI_TalonSRX driveTrainLeft_1;
     public static WPI_TalonSRX driveTrainLeft_2;
     public static WPI_TalonSRX driveTrainRight_1;
     public static WPI_TalonSRX driveTrainRight_2;
     public static WPI_TalonSRX turretPN;
     public static WPI_TalonSRX turretRT;
-    public static AHRS navx;
     public static DifferentialDrive driveTrainRM;
     public static DifferentialDrive turretRTDrive;
     public static DifferentialDrive turretPNDrive;
@@ -91,13 +86,12 @@ public class RobotMap {
         cannon5 = new Solenoid(0,6);
         cannon6 = new Solenoid(0, 7);
 
+        //Combining each side of motors into a group
         driveTrainRMleft = new SpeedControllerGroup(driveTrainLeft_1,driveTrainLeft_2);
         driveTrainRMright = new SpeedControllerGroup(driveTrainRight_1, driveTrainRight_2);
 
         driveTrainRM = new DifferentialDrive(driveTrainRMleft, driveTrainRMright); //Master Drive Train
-
         turretRTDrive = new DifferentialDrive(turretRT, turretRT);
-
         turretPNDrive = new DifferentialDrive(turretPN, turretPN);
 
     }
