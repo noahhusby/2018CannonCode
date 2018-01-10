@@ -44,6 +44,7 @@ import static org.usfirst.frc.team1701.robot.Robot.oi;
 
 public class TeleopDrive extends Command {
 
+	double multiplySpeed = 1.5;
 	public TeleopDrive() {
 		requires(Robot.driveTrain);
 
@@ -54,10 +55,10 @@ public class TeleopDrive extends Command {
 	protected void execute() {
 
 		double deadConst = .10;
-		double fBInput = checkDeadZone(oi.drive_FB.getY(), deadConst);
-		double tInput = .75 * checkDeadZone(oi.drive_T.getX(), deadConst);
+		double fBInput = multiplySpeed * checkDeadZone(oi.drive_FB.getX(), deadConst);
+		double tInput =  multiplySpeed * checkDeadZone(oi.drive_T.getY(), deadConst);
 		double rtInput = .75 * checkDeadZone(oi.turret_R.getX(), deadConst);
-		double pInput = .75 * checkDeadZone(oi.turret_PN.getX(), deadConst);
+		double pInput = .75 * checkDeadZone(oi.turret_PN.getY(), deadConst);
 
 		Robot.driveTrain.teleopControl(tInput, fBInput);
 		RobotMap.turretRTDrive.arcadeDrive(rtInput,0 );
